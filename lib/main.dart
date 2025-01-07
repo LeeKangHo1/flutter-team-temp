@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:planit/ui/memo/memo_page.dart';
+import 'package:planit/ui/pages/auth/change_password_page/change_password_page.dart';
+import 'package:planit/ui/pages/auth/find_id_page/find_id_page.dart';
+import 'package:planit/ui/pages/auth/find_password_page/find_password_page.dart';
+import 'package:planit/ui/pages/auth/login_page/login_page.dart';
+import 'package:planit/ui/pages/auth/signup_page/signup_page.dart';
 import 'package:planit/ui/pages/calendar/calendar_page.dart';
-import 'package:planit/ui/pages/change_password/change_password_page.dart';
 import 'package:planit/ui/pages/dialog/dialog_page.dart';
-import 'package:planit/ui/pages/find_id/find_id_page.dart';
-import 'package:planit/ui/pages/find_password/find_password_page.dart';
-import 'package:planit/ui/pages/login/login_page.dart';
-import 'package:planit/ui/pages/memo/memo_page.dart';
 import 'package:planit/ui/pages/profile/porfile_page.dart';
-import 'package:planit/ui/pages/signup/signup_page.dart';
 import 'package:planit/ui/pages/task/task_page.dart';
 
 import 'ui/pages/test/test_page.dart';
@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
         "/dialog": (context) => DialogPage(),
         "/calendar": (context) => CalendarPage(),
         "/profile": (context) => ProfilePage(),
-        "/signup": (context) => SignupPage(),
-        "/login": (context) => LoginPage(),
+        "/signup_page": (context) => SignupPage(),
+        "/login_page": (context) => LoginPage(),
         "/find-id": (context) => FindIdPage(),
         "/find-password": (context) => FindPasswordPage(),
         "/change-password": (context) => ChangePasswordPage(),

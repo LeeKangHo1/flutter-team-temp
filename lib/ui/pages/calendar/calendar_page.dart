@@ -3,7 +3,7 @@ import 'package:planit/_core/utils/utils.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import 'calendar_appbar.dart';
-import 'calendar_body.dart';
+import 'widgets/calendar_body.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});

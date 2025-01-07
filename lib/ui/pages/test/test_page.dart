@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:planit/ui/widgets/custom_button.dart';
 
+import '../../widgets/main_page_sidedrawer.dart';
+
 class TestPage extends StatelessWidget {
   TestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: MainPageSidedrawer(),
+        appBar: AppBar(
+          leading: Icon(Icons.arrow_back_ios),
+          title: Text("Temp AppBar"),
+          centerTitle: true,
+        ),
       body: Column(
         children: [
           SizedBox(height: 10),
@@ -31,11 +39,11 @@ class TestPage extends StatelessWidget {
           }),
           SizedBox(height: 10),
           CustomButton("회원가입", () {
-            Navigator.pushNamed(context, "/signup");
+            Navigator.pushNamed(context, "/signup_page");
           }),
           SizedBox(height: 10),
           CustomButton("로그인", () {
-            Navigator.pushNamed(context, "/login");
+            Navigator.pushNamed(context, "/login_page");
           }),
           SizedBox(height: 10),
           CustomButton("아이디 찾기", () {

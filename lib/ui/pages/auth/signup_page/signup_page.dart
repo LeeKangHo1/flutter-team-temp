@@ -99,7 +99,7 @@ class SignupPage extends StatelessWidget {
                   // 회원가입 버튼
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/login");
+                      Navigator.pushNamed(context, "/login_page");
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(double.infinity, 50),
