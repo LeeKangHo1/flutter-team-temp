@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:table_calendar/table_calendar.dart';
+
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
 
 // 차트 데이터 클래스
 class ChartData {
@@ -9,7 +15,8 @@ class ChartData {
   ChartData(this.x, this.y);
 }
 
-class ProfilePage extends StatelessWidget {
+class _ProfilePageState extends State<ProfilePage> {
+  // 차트 데이터
   final List<ChartData> chartData = [
     ChartData('월', 3),
     ChartData('화', 5),
@@ -20,6 +27,21 @@ class ProfilePage extends StatelessWidget {
     ChartData('일', 6),
   ];
 
+  // 달력
+  late DateTime _focusedDay; // 현재 포커스된 날짜
+  late DateTime _firstDay; // 캘린더에 표시할 해당 월의 첫날
+  late DateTime _lastDay; // 캘린더에 표시할 해당 월의 마지막 날
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 현재 날짜 기준으로 초기화
+    _focusedDay = DateTime.now();
+    _firstDay = DateTime(_focusedDay.year, _focusedDay.month, 1);
+    _lastDay = DateTime(_focusedDay.year, _focusedDay.month + 1, 0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +50,7 @@ class ProfilePage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0), // 전체 화면 여백 추가
         child: ListView(
           children: [
-            // 첫번째 -사용자 정보
+            // 첫번째 - 사용자 정보
             Container(
               padding: EdgeInsets.all(10.0),
               child: Column(
@@ -54,7 +76,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            // 두번째 -작업 개요
+            // 두번째 - 작업 개요
             Container(
               padding: EdgeInsets.all(16.0),
               child: Column(
@@ -133,7 +155,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            // 세번째 -그래프
+            // 세번째 - 그래프
             Container(
               padding: EdgeInsets.all(16.0),
               child: Column(
@@ -144,7 +166,6 @@ class ProfilePage extends StatelessWidget {
                       minimum: 0, // y축 최소값
                       maximum: 8, // y축 최대값
                       interval: 2, // y축 간격
-                      // title: AxisTitle(text: 'y축 제목'),
                     ),
                     title: ChartTitle(text: '일일 작업 완료'), // 그래프 제목
                     series: <ChartSeries>[
@@ -154,6 +175,7 @@ class ProfilePage extends StatelessWidget {
                         xValueMapper: (ChartData data, _) => data.x,
                         yValueMapper: (ChartData data, _) => data.y,
                         color: Colors.blue,
+                        animationDuration: 0, // 그래프 로드 시, 애니메이션 효과 제거
                       ),
                     ],
                   ),
@@ -162,59 +184,63 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            // 네번째 - 그리드
+            // 네번째 - 달력
             Container(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // 제목 왼쪽 정렬
-                children: [
-                  // 제목
-                  Text(
-                    "이번달 달성 현황",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+              height: 400, // 달력 크기 지정
+              padding: EdgeInsets.all(16.0), // 여백 추가
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100, // 배경색 추가
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: TableCalendar(
+                firstDay: _firstDay,
+                lastDay: _lastDay,
+                focusedDay: _focusedDay,
+                // headerVisible: false, // 년도 표시
+                // daysOfWeekVisible: false, // 요일 표시
+                calendarStyle: CalendarStyle(
+                  outsideDaysVisible: false, // 전월, 다음 월 날짜 숨기기
+                  // defaultDecoration: BoxDecoration( // 날짜 박스 하나씩
+                  //   // color: Colors.grey.shade200, // 기본 날짜 박스 배경색
+                  //   shape: BoxShape.rectangle, // 네모난 형태
+                  //   borderRadius: BorderRadius.circular(8.0),
+                  // ),
+                  // todayDecoration: BoxDecoration(), // 오늘 날짜 표시 제거
+                  selectedDecoration: BoxDecoration(
+                    color: Colors.blue, // 선택된 날짜 배경색
+                    shape: BoxShape.rectangle, // 네모난 형태
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                  SizedBox(height: 16),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 7, // 한 줄에 7개
-                      crossAxisSpacing: 4.0, // 열 간격
-                      mainAxisSpacing: 4.0, // 행 간격
-                    ),
-                    itemCount: 31,
-                    // 총 날짜 수
-                    itemBuilder: (context, index) {
-                      final day = index + 1; // 1일부터 시작하는 날짜
+                ),
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _focusedDay = focusedDay; // 선택된 날짜로 포커스 변경
+                  });
+                },
+                calendarBuilders: CalendarBuilders(
+                  markerBuilder: (context, day, events) {
+                    if (events.contains('highlighted')) {
                       return Container(
-                        alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: day <= 20
-                              ? Colors.blue // 1~20일은 파란색 배경
-                              : Colors.grey, // 나머지 날짜는 회색 배경
-                          borderRadius:
-                          BorderRadius.circular(8.0), // 박스 모서리 둥글게
+                          color: Colors.blue, // 1일부터 20일까지의 배경색
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
+                        alignment: Alignment.center,
                         child: Text(
-                          "$day", // 날짜 텍스트
+                          '${day.day}',
                           style: TextStyle(
-                            color: day <= 20
-                                ? Colors.white // 1~20일 텍스트 색상
-                                : Colors.black, // 나머지 날짜 텍스트 색상
-                            fontWeight: FontWeight.bold, // 텍스트 굵게
-                          ),
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       );
-                    },
-                  ),
-                ],
+                    }
+                    return null;
+                  },
+                ),
               ),
             ),
             SizedBox(height: 16),
-            // 그리드 -퍼센트, 완료 개수
+            // 그리드 - 퍼센트, 완료 개수
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

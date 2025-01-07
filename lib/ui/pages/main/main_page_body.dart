@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../plan/category_page/category_page.dart';
 import '../plan/list_page/plan_list_page.dart';
 import '../plan/sortby_page/sortby_dialog.dart';
-import '../plan/test_page/test_page.dart';
+import '../plan/test_page/temp_page.dart';
 
 class MainPageBody extends StatelessWidget {
   final int selectedIndex;
@@ -17,7 +17,7 @@ class MainPageBody extends StatelessWidget {
     return IndexedStack(
       index: selectedIndex,
       children: [
-        TestPage(),
+        TempPage(),
         PlanListPage(),
         // 캘린더
         SortbyDialog(),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/custom_button.dart';
 
-class TestPage extends StatelessWidget {
+class TempPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
