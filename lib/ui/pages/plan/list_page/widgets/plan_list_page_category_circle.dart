@@ -17,13 +17,14 @@ class PlanListPageCategoryCircle extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
         decoration: BoxDecoration(
+          color: Colors.blue,
           borderRadius: BorderRadius.circular(18.0),
-          border: Border.all(width: 0.5, color: Colors.grey),
         ),
         child: Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 12, color: Colors.white),
         ),
       ),
     );

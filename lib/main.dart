@@ -9,9 +9,9 @@ import 'package:planit/ui/pages/auth/login_page/login_page.dart';
 import 'package:planit/ui/pages/auth/signup_page/signup_page.dart';
 import 'package:planit/ui/pages/calendar/calendar_page.dart';
 import 'package:planit/ui/pages/dialog/dialog_page.dart';
+import 'package:planit/ui/pages/main/main_page.dart';
 import 'package:planit/ui/pages/profile/porfile_page.dart';
 import 'package:planit/ui/pages/task/task_page.dart';
-import 'package:planit/ui/pages/test/test_page.dart';
 
 void main() async {
   // 한국어로 바꾸는 라이브러리 설정 >> 시작전에 바꾸고 가는 방식인듯
@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
         const Locale('ko', 'KR'), // 한국어
       ],
       debugShowCheckedModeBanner: false,
-      home: TestPage(),
-      // home: MainPage(),
+      // home: TestPage(),
+      home: MainPage(),
       routes: {
         "/task": (context) => TaskPage(),
         "/memo": (context) => MemoPage(),

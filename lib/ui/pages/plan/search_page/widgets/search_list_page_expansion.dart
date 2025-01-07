@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:planit/ui/pages/plan/list_page/widgets/plan_list_page_checkbox.dart';
+import 'package:planit/ui/pages/plan/search_page/widgets/search_list_page_checkbox.dart';
 
-class PlanListPageExpansion extends StatefulWidget {
+class SearchListPageExpansion extends StatefulWidget {
+  const SearchListPageExpansion({super.key});
+
   @override
-  _PlanListPageExpansionState createState() => _PlanListPageExpansionState();
+  State<SearchListPageExpansion> createState() =>
+      _SearchListPageExpansionState();
 }
 
-class _PlanListPageExpansionState extends State<PlanListPageExpansion> {
+class _SearchListPageExpansionState extends State<SearchListPageExpansion> {
   bool _isExpanded = false; // 컬럼의 확장 상태를 관리하는 변수
 
   void _toggleExpand() {
@@ -45,7 +48,7 @@ class _PlanListPageExpansionState extends State<PlanListPageExpansion> {
                     // border 속성은 제거
                   ),
                   child: ListTile(
-                    leading: PlanListPageCheckbox(),
+                    leading: SearchListPageCheckbox(),
                     title: Text(
                       "영어 단어 10개 외우기",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -65,5 +68,6 @@ class _PlanListPageExpansionState extends State<PlanListPageExpansion> {
         ),
       ],
     );
+    ;
   }
 }

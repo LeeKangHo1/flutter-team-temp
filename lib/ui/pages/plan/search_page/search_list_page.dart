@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../list_page/widgets/plan_list_page_expansion.dart';
+import 'package:planit/ui/pages/plan/search_page/widgets/search_list_page_expansion.dart';
 
 class SearchListPage extends StatefulWidget {
   @override
@@ -31,11 +30,11 @@ class _SearchListPageState extends State<SearchListPage> {
             ),
           ),
 
-          Divider(),
           // 확장 패널
           // TODO 여기로 _searchController.text 넘겨서 패널 컨트롤해야함
-          PlanListPageExpansion(),
-          Divider(),
+          SearchListPageExpansion(),
+          SearchListPageExpansion(),
+          SearchListPageExpansion(),
           Center(
             child: Text(
               "완료된 모든 작업 확인",
@@ -51,8 +50,12 @@ class _SearchListPageState extends State<SearchListPage> {
         onPressed: () {
           // + 버튼
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.blue,
+        shape: CircleBorder(),
       ),
     );
   }

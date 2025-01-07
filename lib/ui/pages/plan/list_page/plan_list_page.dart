@@ -8,13 +8,6 @@ class PlanListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // + 버튼
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.blue,
-      ),
       body: ListView(
         children: [
           // TODO 검색 버튼 누를 경우 카테고리 라인 제거하고 검색 textform
@@ -28,11 +21,11 @@ class PlanListPage extends StatelessWidget {
               PlanListPagePointPopup(),
             ],
           ),
-          Divider(),
           // TODO 작업이 하나도 없을 때 보여주는 화면 PlanListBodyCheckbox
           // 확장 패널
           PlanListPageExpansion(),
-          Divider(),
+          PlanListPageExpansion(),
+          PlanListPageExpansion(),
           Center(
             child: Text(
               "완료된 모든 작업 확인",
@@ -42,30 +35,15 @@ class PlanListPage extends StatelessWidget {
               ),
             ),
           ),
-          // TODO 우측 하단 항상 떠있는 작업 생성 버튼 어떻게 할
-          Column(
-            children: [
-              Align(
-                alignment: Alignment.bottomRight, // 우측 하단으로 정렬
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      color: Colors.blue,
-                      size: 40.0,
-                    ),
-                    Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 20.0,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // + 버튼
+        },
+        child: const Icon(Icons.add, color: Colors.white,),
+        backgroundColor: Colors.blue,
+        shape: CircleBorder(),
       ),
     );
   }
