@@ -18,6 +18,7 @@ class MainPageBody extends StatelessWidget {
       index: selectedIndex,
       children: [
         TempPage(),
+        // SearchListPage(),
         PlanListPage(),
         // 캘린더
         SortbyDialog(),

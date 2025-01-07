@@ -8,6 +8,13 @@ class PlanListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // + 버튼
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue,
+      ),
       body: ListView(
         children: [
           // TODO 검색 버튼 누를 경우 카테고리 라인 제거하고 검색 textform
