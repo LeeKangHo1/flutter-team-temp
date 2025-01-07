@@ -123,7 +123,7 @@ class _DialogPageState extends State<DialogPage> {
     );
   }
 
-  void _showAlarmDialog(BuildContext context) {
+    void _showAlarmDialog(BuildContext context) {
     bool _isSwitched = false;
     showDialog(
       context: context,

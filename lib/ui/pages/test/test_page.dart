@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planit/ui/widgets/custom_button.dart';
 
-import '../../widgets/main_page_sidedrawer.dart';
+import '../main/main_page_sidedrawer.dart';
 
 class TestPage extends StatelessWidget {
   TestPage({super.key});
