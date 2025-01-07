@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../sortby_page/sortby_dialog.dart';
-
 class CategoryPage extends StatelessWidget {
   const CategoryPage({super.key});
 
@@ -13,51 +11,63 @@ class CategoryPage extends StatelessWidget {
         // 카테고리 관리 화면
         Row(
           children: [
-            Icon(CupertinoIcons.arrow_left),
-            Text("카테고리 관리"),
-          ],
-        ),
-        Row(
-          children: [
             Expanded(
               child: Container(
+                height: 50,
                 child: Center(child: Text("홈페이지에 표시되는 카테고리")),
-                color: Colors.lightBlue,
+                color: Colors.blue.shade200,
               ),
             ),
           ],
         ),
-        // TODO: 이거 row로 바꿔야 겠다.
-        ListTile(
-          leading: Icon(
-            CupertinoIcons.circle_fill,
-            size: 12.0,
-            color: Colors.blueAccent,
-          ),
-          title: Text("작업"),
-          trailing: SizedBox(
-            width: 40,
-            child: Row(
-              children: [
-                Text("0"),
-                Icon(CupertinoIcons.ellipsis_vertical),
-              ],
-            ),
+        // 동적으로 ListTile을 띄우기 위한 ListView.builder
+        // shrinkWrap을 true로 설정하여 필요한 공간만 차지하게 함
+        Flexible(
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: BouncingScrollPhysics(),
+            itemCount: 25, // 데이터의 길이만큼 반복
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                  leading: Icon(
+                    CupertinoIcons.circle_fill,
+                    size: 12.0,
+                    color: Colors.blueAccent,
+                  ),
+                  title: Text("asdasd${index}"), // 리스트 데이터 표시
+                  trailing: SizedBox(
+                    width: 40,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("0"), // 예시 데이터
+                        Icon(CupertinoIcons.ellipsis_vertical),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ),
-        Row(
-          children: [
-            Icon(CupertinoIcons.plus),
-            Text("새로 만들기"),
-          ],
-        ),
-        SizedBox(
-          child: Center(child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text("순서를 변경하려면 길게 누르고 드래그하세요.", style: TextStyle(
-              color: Colors.grey,
-            ),),
-          )),
+        InkWell(
+          onTap: () {
+            // TODO: 카테고리 생성 다이얼로그 띄우기
+          },
+          child: Row(
+            children: [
+              SizedBox(
+                width: 10,
+                height: 50,
+              ),
+              Icon(CupertinoIcons.plus),
+              SizedBox(width: 10),
+              Text("새로 만들기"),
+            ],
+          ),
         ),
       ],
     );
