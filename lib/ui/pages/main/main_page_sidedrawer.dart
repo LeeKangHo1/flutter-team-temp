@@ -21,10 +21,16 @@ class _MainPageSidedrawerState extends State<MainPageSidedrawer> {
       child: Column(
         children: [
           // 로고
-          Image.asset(
-            'assets/logo.png',
-            width: 100,
-            height: 100,
+          Container(
+            width: 300,
+            height: 300,
+            decoration: BoxDecoration(
+              color: Colors.blue[100], // 배경 색상 파란색 설정
+              image: DecorationImage(
+                image: AssetImage('assets/logo.png'),
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
           // 범주
           // GestureDetector 사용자 제스처 인식

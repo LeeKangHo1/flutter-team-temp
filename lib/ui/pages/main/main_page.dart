@@ -10,19 +10,27 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  // 1. 상태
+  // 상태
   int selectedIndex = 1;
+  final GlobalKey<ScaffoldState> _forSideScaffoldKey =
+      GlobalKey<ScaffoldState>();
 
-  // 2. 행위, onTap보다 여기에 적는 것을 추천
+  // 행위, onTap보다 여기에 적는 것을 추천
   void onClickBottomNavigation(int value) {
-    selectedIndex = value;
-    setState(() {});
+    if (value == 0) {
+      _forSideScaffoldKey.currentState?.openDrawer();
+    } else {
+      selectedIndex = value;
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: MainPageSidedrawer(),
+      key: _forSideScaffoldKey,
+      drawer: MainPageSidedrawer(),
+      // 왼쪽에서 나오는 드로어 설정
       // 임시 앱바
       appBar: AppBar(
         leading: Icon(Icons.arrow_back_ios),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../test/test_page2.dart';
 import 'widgets/plan_list_page_category_line.dart';
 import 'widgets/plan_list_page_expansion.dart';
 import 'widgets/plan_list_page_point_popup.dart';
@@ -35,13 +36,18 @@ class PlanListPage extends StatelessWidget {
               ),
             ),
           ),
+          // TODO 임시 테스트 페이지, 나중에 삭제해야 함
+          TestPage2(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // + 버튼
         },
-        child: const Icon(Icons.add, color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.blue,
         shape: CircleBorder(),
       ),
