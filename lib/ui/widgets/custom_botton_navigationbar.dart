@@ -14,29 +14,61 @@ class CustomBottonNavigationbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        currentIndex: selectedIndex,
-        // 위의 index: 랑 똑같이 설정해야 함
-        onTap: (value) {
-          // value가 현재 index
-          onClickBottomNavigation(value);
-        },
-        // 바텀 네비게이션 바 설정
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.black54,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.bars),
-            label: "",
+      currentIndex: selectedIndex,
+      // 위의 index: 랑 똑같이 설정해야 함
+      onTap: (value) {
+        // value가 현재 index
+        onClickBottomNavigation(value);
+      },
+      // 바텀 네비게이션 바 설정
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.black54,
+      items: [
+        BottomNavigationBarItem(
+          icon: Column(
+            children: [
+              Icon(CupertinoIcons.bars),
+            ],
           ),
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.doc_plaintext), label: "과제"),
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.calendar), label: "캘린더"),
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person), label: "내정보"),
-        ]);
+          label: "",
+        ),
+        BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(CupertinoIcons.doc_plaintext),
+                Text('과제',
+                    style: TextStyle(
+                      color: selectedIndex == 1 ? Colors.blue : Colors.black,
+                    ))
+              ],
+            ),
+            label: ""),
+        BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(CupertinoIcons.doc_plaintext),
+                Text('캘린더',
+                    style: TextStyle(
+                      color: selectedIndex == 2 ? Colors.blue : Colors.black,
+                    ))
+              ],
+            ),
+            label: ""),
+        BottomNavigationBarItem(
+            icon: Column(
+              children: [
+                Icon(CupertinoIcons.doc_plaintext),
+                Text('내정보',
+                    style: TextStyle(
+                      color: selectedIndex == 3 ? Colors.blue : Colors.black,
+                    ))
+              ],
+            ),
+            label: ""),
+      ],
+    );
   }
 }
